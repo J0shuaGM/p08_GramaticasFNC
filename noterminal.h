@@ -14,26 +14,24 @@
 #include <iostream>
 #include <vector>
 
-class NoTerminales {
+class NoTerminal {
   public:
     //Constructor
-    NoTerminales(int size, char simbolo); 
+    NoTerminal(void) { simbolo_ = 'S'; }
+    NoTerminal(char simbolo); 
 
     //Getters y setters
-    void setSimbolo(char simbolo);
-    std::vector<char> getNoTerminales(void) { return noterminales_; }
-    std::vector<char> getNoTerminales(void) const { return noterminales_; }
-    int getSize(void) { return size_; }
+    char getSimbolo(void) { return simbolo_; }
+    char getSimbolo(void) const { return simbolo_; }
 
     //Sobrecarga E/S
-    friend std::istream& operator>>(std::istream& entrada, NoTerminales simbolos);
-    friend std::ostream& operator<<(std::ostream& salida, const NoTerminales& simbolos);
+    friend std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos);
+    friend std::ostream& operator<<(std::ostream& salida, const NoTerminal& simbolos);
     
     //Metodos
 
   private: 
-    int size_;
-    std::vector<char> noterminales_;
+    char simbolo_;
 };
 
 #endif //NOTERMINALES_H
