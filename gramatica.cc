@@ -18,6 +18,12 @@
 #include "produccion.h"
 #include "gramatica.h"
 
+
+
+/**
+ * @brief Constructor de la clase Gramatica
+ * @param fichero cadena que contiene el nombre del fichero que contiene los datos
+*/
 Gramatica::Gramatica(const std::string& fichero) {
   std::ifstream input(fichero); 
   if(!input.is_open()) {
@@ -55,6 +61,14 @@ Gramatica::Gramatica(const std::string& fichero) {
   input.close();
 }
 
+
+
+/**
+ * @brief Sobrecarga del operador de entrada de la clase Gramatica
+ * @param entrada Variable para recibir la entrada de datos
+ * @param gramatica Objeto Gramatica que va a ser sobreescrito
+ * @return entrada Retornamos el nuevo valor  
+*/
 std::istream& operator>>(std::istream& entrada, Gramatica& gramatica) {
   std::string nombre_fichero;
   entrada >> nombre_fichero; 
@@ -62,6 +76,14 @@ std::istream& operator>>(std::istream& entrada, Gramatica& gramatica) {
   return entrada;
 }
 
+
+
+/**
+ * @brief Sobrecarga del operador de salida de la clase Gramatica
+ * @param entrada Variable para recibir la salida de datos
+ * @param gramatica Objeto Gramatica que va a ser escrito
+ * @return entrada Retornamos el nuevo valor  
+*/
 std::ostream& operator<<(std::ostream& salida, const Gramatica& gramatica) {
   Alfabeto simbolos_terminales = gramatica.getSimbolosTerminales(); 
   std::vector<NoTerminal> simbolos_no_terminales = gramatica.getSimbolosNoTerminales(); 
@@ -79,13 +101,26 @@ std::ostream& operator<<(std::ostream& salida, const Gramatica& gramatica) {
   return salida;
 }
 
-bool Gramatica::EsTerminal(const std::string& caracter) {
+
+
+/**
+ * @brief Metodo de la clase Gramatica que comprueba si un caracter es no terminal
+ * @param caracter cadena que contiene el caracter a comprobar
+ * @return devolvemos true o false segun el resultado 
+*/
+bool Gramatica::EsNoTerminal(const std::string& caracter) {
   for(const auto& t : simbolos_no_terminales_) {
     if(t.getSimbolo() == caracter[0]) return true;
   }
   return false;
 }
 
+
+
+/**
+ * @brief Metodo que comprueba si la gramatica contiene producciones vacias
+ * @return devolvemos true o false segun el resultado
+*/
 bool Gramatica::ProduccionesVacias(void) {
   for(const auto& p : producciones_) {
     if(p.first.getSimbolo() != 'S' && (p.second.getProduccion().empty() || p.second.getProduccion() == "&")) return true;
@@ -93,13 +128,25 @@ bool Gramatica::ProduccionesVacias(void) {
   return false;
 }
 
+
+
+/**
+ * @brief Metodo que comprueba si la gramatia contiene producciones unitarias
+ * @return devolvemos true o false segun el resultado  
+*/
 bool Gramatica::ProduccionesUnitarias(void) {
   for(const auto& p : producciones_) {
-    if(p.second.getProduccion().size() == 1 && EsTerminal(p.second.getProduccion())) return true;
+    if(p.second.getProduccion().size() == 1 && EsNoTerminal(p.second.getProduccion())) return true;
   }
   return false;
 }
 
+
+
+/**
+ * @brief Metodo encargado de convertir la gramatica a FNC
+ * @return FNC Objeto Gramatica que contiene la conversion a su forma FNC 
+*/
 Gramatica Gramatica::ConversorFNC(void) {
   Gramatica FNC = *this;
   if(ProduccionesVacias()) {

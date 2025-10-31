@@ -43,7 +43,7 @@ class Gramatica {
     //Metodos
     bool ProduccionesVacias(void); 
     bool ProduccionesUnitarias(void);
-    bool EsTerminal(const std::string& caracter);
+    bool EsNoTerminal(const std::string& caracter);
     Gramatica ConversorFNC(void);
 
   private:

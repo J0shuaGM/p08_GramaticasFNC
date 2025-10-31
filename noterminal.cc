@@ -13,10 +13,24 @@
 
 #include "noterminal.h"
 
+
+
+/**
+ * @brief Constructor de la clae NoTerminal
+ * @param simbolo caracter que contiene el simbolo no Terminal 
+*/
 NoTerminal::NoTerminal(char simbolo) {
   simbolo_  = simbolo;
 }
 
+
+
+/**
+ * @brief Sobrecarga del operador de entrada de la clase NoTerminal
+ * @param entrada Variable para recibir la entrada de datos
+ * @param simbolos Objeto NoTerminal a ser sobreescrito
+ * @return entrada Retornamos el nuevo valor  
+*/
 std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos) {
   char simbolo; 
   entrada >> simbolo; 
@@ -24,6 +38,14 @@ std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos) {
   return entrada;
 }
 
+
+
+/**
+ * @brief Sobrecarga del operador de salida de la clase NoTerminal
+ * @param entrada Variable para recibir la salida de datos
+ * @param simbolos Objeto NoTerminal a ser escrito
+ * @return entrada Retornamos el nuevo valor  
+*/
 std::ostream& operator<<(std::ostream& salida, const NoTerminal& simbolos) {
   salida << simbolos.getSimbolo();
   return salida;

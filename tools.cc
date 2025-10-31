@@ -53,6 +53,13 @@ void Usage(int argc, char* argv[]) {
   }
 }
 
+
+
+/**
+ * @brief Metodo para escribir la gramatica en el fichero de salida
+ * @param fichero_salida cadena que contiene el nombre del fichero de salida
+ * @param gramatica Objeto Gramatica a escribir en el fichero
+*/
 void Escritura(const std::string& fichero_salida, Gramatica gramatica) {
   std::ofstream out(fichero_salida); 
   if(!out.is_open()) {

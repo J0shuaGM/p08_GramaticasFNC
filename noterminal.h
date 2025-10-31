@@ -28,9 +28,8 @@ class NoTerminal {
     friend std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos);
     friend std::ostream& operator<<(std::ostream& salida, const NoTerminal& simbolos);
     
+    //Metodo para ordenar en el Multimap
     bool operator<(const NoTerminal& otro) const { return simbolo_ < otro.simbolo_; }
-
-    //Metodos
 
   private: 
     char simbolo_;
