@@ -10,7 +10,10 @@
 
 #include <iostream>
 
+#include "noterminal.h"
 #include "alfabeto.h"
+#include "produccion.h"
+#include "gramatica.h"
 
 const std::string helptext = R"(El programa necesita dos ficheros para poder ser ejecutado: input.gra y output.gra que son los ficheros que especifican las gramaticas de entrada y salida respectivamente Los ficheros de especificacion de gramaticas son ficheros de texto plano con extension
 .gra que contienen los elementos definitorios de la gramatica G ≡ (Σ, V, S, P) en este
@@ -27,3 +30,4 @@ A a
 siendo a ∈ (Σ U V )* , es decir una secuencia de simbolos terminales y no terminales.
 La cadena vacia, ϵ se representa mediante el caracter &.)";
 void Usage(int argc, char* argv[]);
+void Escritura(const std::string& fichero_salida, Gramatica gramatica);

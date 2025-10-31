@@ -1,0 +1,24 @@
+Gramatica en FNC
+Alfabeto: {a, b, c}
+Simbolos no terminales: S X Y A B C D E F 
+Simbolo de arranque: S
+Producciones: 
+A -> a
+B -> b
+C -> XD
+D -> BX
+E -> BX
+F -> XB
+S -> &
+S -> AC
+S -> AE
+S -> AF
+X -> a
+X -> b
+X -> AY
+X -> BY
+Y -> a
+Y -> b
+Y -> c
+Y -> AY
+Y -> BY

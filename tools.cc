@@ -52,3 +52,14 @@ void Usage(int argc, char* argv[]) {
     }
   }
 }
+
+void Escritura(const std::string& fichero_salida, Gramatica gramatica) {
+  std::ofstream out(fichero_salida); 
+  if(!out.is_open()) {
+    std::cerr << "El fichero de salida no se ha podido abrir" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  out << "Gramatica en FNC" << std::endl;
+  out << gramatica; 
+  out.close();
+}

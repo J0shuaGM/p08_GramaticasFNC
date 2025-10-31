@@ -20,8 +20,10 @@
 
 int main(int argc, char* argv[]) {
   Usage(argc, argv);
-  std::string fichero = argv[1];
-  Gramatica gramatica(fichero);
-  std::cout << gramatica << std::endl;
+  std::string fichero_entrada = argv[1];
+  std::string fichero_salida = argv[2];
+  Gramatica gramatica(fichero_entrada);
+  Gramatica FNC = gramatica.ConversorFNC();
+  Escritura(fichero_salida, FNC);
   return 0;
 }

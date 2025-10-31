@@ -22,6 +22,7 @@ class Gramatica {
   public: 
     //Constructor
     Gramatica(const std::string& fichero);
+    Gramatica() = default;
 
     //Getters
     Alfabeto getSimbolosTerminales(void) { return simbolos_terminales_; }
@@ -40,6 +41,11 @@ class Gramatica {
     friend std::ostream& operator<<(std::ostream& salida, const Gramatica& gramatica);
 
     //Metodos
+    bool ProduccionesVacias(void); 
+    bool ProduccionesUnitarias(void);
+    bool EsTerminal(const std::string& caracter);
+    Gramatica ConversorFNC(void);
+
   private:
     Alfabeto simbolos_terminales_;
     std::vector<NoTerminal> simbolos_no_terminales_; 
