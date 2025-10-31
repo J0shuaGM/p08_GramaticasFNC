@@ -11,6 +11,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include <sstream>
 
 #include "noterminal.h"
 #include "alfabeto.h"
@@ -27,12 +28,12 @@ Gramatica::Gramatica(const std::string& fichero) {
   std::string linea;
   NoTerminal simbolo_no_terminal;
   input >> numero_alfabeto;
-  for(int i = 0; i < numero_alfabeto; ++i) {
+  for(int i = 0; i <= numero_alfabeto; ++i) {
     getline(input, linea);
-    simbolos_terminales_ = Alfabeto(linea);
+    simbolos_terminales_.setSimbolos(linea);
   }
   input >> numero_noterminales;
-  for(int i = 0; i < numero_noterminales; ++i) {
+  for(int i = 0; i <= numero_noterminales; ++i) {
     getline(input, linea);
     for(char c : linea) {
       simbolo_no_terminal = NoTerminal(c); 
@@ -40,8 +41,39 @@ Gramatica::Gramatica(const std::string& fichero) {
     }
   }
   input >> numero_producciones;
-  for(int i = 0; i < numero_producciones; ++i) {
+  for(int i = 0; i <= numero_producciones; ++i) {
     getline(input, linea);
-    
+    std::string noterminal, prod;
+    std::istringstream flujo(linea);
+    flujo >> noterminal >> prod;
+    for(char c : noterminal) {
+      simbolo_no_terminal = NoTerminal(c);
+      Produccion producciones(simbolo_no_terminal, prod); 
+      producciones_.insert({simbolo_no_terminal, producciones});
+    }
   }
+}
+
+std::istream& operator>>(std::istream& entrada, Gramatica& gramatica) {
+  std::string nombre_fichero;
+  entrada >> nombre_fichero; 
+  gramatica = Gramatica(nombre_fichero);
+  return entrada;
+}
+
+std::ostream& operator<<(std::ostream& salida, const Gramatica& gramatica) {
+  Alfabeto simbolos_terminales = gramatica.getSimbolosTerminales(); 
+  std::vector<NoTerminal> simbolos_no_terminales = gramatica.getSimbolosNoTerminales(); 
+  NoTerminal simbolo_arranque = gramatica.getSimboloArranque();
+  std::multimap<NoTerminal, Produccion> producciones = gramatica.getProducciones();
+  salida << "Alfabeto: " << simbolos_terminales << std::endl;
+  salida << "Simbolos no terminales: "; 
+  for(const auto& s : simbolos_no_terminales) salida << s << " "; 
+  salida << std::endl;
+  salida << "Simbolo de arranque: " << simbolo_arranque << std::endl;
+  salida << "Producciones: " << std::endl;
+  for(const auto& p : producciones) {
+    salida << p.second;
+  }
+  return salida;
 }

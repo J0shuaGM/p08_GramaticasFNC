@@ -34,7 +34,7 @@ class Alfabeto {
 
     //Getters y setters
     std::set<char> getSimbolos(void) { return simbolos_; }
-    void setSimbolos(std::set<char> simbolos) { simbolos_ = simbolos; }
+    void setSimbolos(const std::string& simbolo);
 
     //insert y search
     void insertar(char c);

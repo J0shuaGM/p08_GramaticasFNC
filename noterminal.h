@@ -28,6 +28,8 @@ class NoTerminal {
     friend std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos);
     friend std::ostream& operator<<(std::ostream& salida, const NoTerminal& simbolos);
     
+    bool operator<(const NoTerminal& otro) const { return simbolo_ < otro.simbolo_; }
+
     //Metodos
 
   private: 

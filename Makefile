@@ -13,10 +13,10 @@
 TARGET =  Grammar2CNF
 
 # Lista de archivos fuente(.cc)
-SOURCES = 
+SOURCES = alfabeto.cc cliente.cc gramatica.cc noterminal.cc produccion.cc tools.cc
 
 # Dependencias de los archivos fuente 
-DEPENDENCIES = 
+DEPENDENCIES = alfabeto.h gramatica.h noterminal.h produccion.h tools.h
 
 # Opciones de compilación
 CXX = g++

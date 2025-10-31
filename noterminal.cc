@@ -25,6 +25,6 @@ std::istream& operator>>(std::istream& entrada, NoTerminal& simbolos) {
 }
 
 std::ostream& operator<<(std::ostream& salida, const NoTerminal& simbolos) {
-  salida << simbolos.getSimbolo() << std::endl;
+  salida << simbolos.getSimbolo();
   return salida;
 }

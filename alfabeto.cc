@@ -32,6 +32,18 @@ Alfabeto::Alfabeto(std::string simbolos) {
 
 
 /**
+ * @brief setter para introducir simbolos al alfabeto
+ * @param simbolo string que contiene los simbolos del alfabeto
+*/
+void Alfabeto::setSimbolos(const std::string& simbolo) {
+  for (const char c : simbolo) {
+    simbolos_.insert(c);
+  }
+}
+
+
+
+/**
  * @brief Sobrecarga del operador de extraccion de la clase Alfabeto
  * @param entrada Variable para recibir la entrada de datos
  * @param simbolos Objeto Alfabeto que va a ser sobreescrito
